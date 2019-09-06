@@ -20,11 +20,15 @@ def contains_i_help(arr, offset):
     right = arr[half:]
     right_offset = half + offset
 
-    if left_offset >= left[0]:
+    if left_offset == left[0]:
+        return True
+    elif left_offset > left[0]:
         left_bool = contains_i_help(left, left_offset)
     else:
         left_bool = False
-    if right_offset >= right[0]:
+    if right_offset == right[0]:
+        return True
+    elif right_offset > right[0]:
         right_bool = contains_i_help(right, right_offset)
     else:
         right_bool = False
@@ -42,20 +46,20 @@ def contains_i_iter(arr):
     return False
 
 def compare_contains_i():
-    k = [i + 1 for i in range(0, 100000)]
-    i = random.randint(1, 100000)
+    k = [i - 2 for i in range(1, 10000000)]
+    i = random.randint(1, 10000000)
     k[i] = i
     start = time.time()
-    contains_i(k)
+    print(contains_i(k))
     end = time.time()
     time1 = end - start
     print(time1)
     start = time.time()
-    contains_i_iter(k)
+    print(contains_i_iter(k))
     end = time.time()
     time2 = end - start
     print(time2)
-    print("This many times faster:", time2 / time1)
+    print("The iterative solution is {0:.2f} times faster.".format(time1 / time2))
 
 
 
